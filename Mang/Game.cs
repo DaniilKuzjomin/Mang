@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mang
 {
-    internal class Mang
+    internal class Game
     {
-        static void Main()
-        {
-        }
     }
 }
