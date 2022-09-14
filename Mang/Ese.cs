@@ -10,7 +10,7 @@ namespace Mang
     {
 
         private int punktideArv; // частное свойство punktideArv
-         private string nimi; // частное свойство nimi
+        private string nimi; // частное свойство nimi
 
         public Ese(int punktideArv, string nimetus) // Конструктор с двумя параметрами по которым можно определить Имя и кол-во Точек
         {
@@ -19,7 +19,11 @@ namespace Mang
         }
 
 
-        public string info() { return nimi; } // метод info возвращает Имя
+        public string info() // метод info возвращает Имя
+        {
+            Console.WriteLine(nimi);
+            return nimi; 
+        }
         public int PunktideArv() { return punktideArv; } // метод PunktideArv возвращает Кол-во строчек
     }
 }

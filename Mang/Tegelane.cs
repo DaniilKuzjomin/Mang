@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Mang
 {
-    class Tegelane : IUksus, IComparable<Tegelane> // Класс Tegelane реализует интерфейс IUksus и 
+    class Tegelane : IUksus, IComparable<Tegelane> // Класс Tegelane реализует интерфейс IUksus 
     {
         public string nimi; // частное свойство nimi
-        List<Ese> EseList = new List<Ese>(); // список элементов List<Ese>
+        List<Ese> EseList; // список элементов List<Ese>
 
         public Tegelane(string nimi) // конструктор с одним параметром который используется для установки имени
         {
@@ -31,17 +31,9 @@ namespace Mang
         double summ;
         public string info() // метод Info возвращает информацию о персонаже в виде текста, показывающего имя персонажа, количество предметов и количество очков
         {
-            Console.WriteLine($"Nimi: {nimi}");
-            foreach (string line in File.ReadLines(@"..\..\..\esemed.txt"))
-            {
-                string[] row = line.Split(';');
-                summ += Double.Parse(row[1]);
-                Ese ese = new Ese(row[0], Int32.Parse(row[1]));
-                EseList.Add(ese);
-                Console.WriteLine($"Nimetus: {row[0]}, Punktide arvu: {row[1]}");
-            }
-            Console.WriteLine($"Esemete arvu: {EseList.Count}, Summa: {summ}");
-            return $"{nimi}";
+            string tegelase_info;
+            tegelase_info = nimi + ", " + EseList.Count() + ", " + PunktideArv();
+            return tegelase_info;
         }
 
         
@@ -49,23 +41,18 @@ namespace Mang
         {
             foreach (Ese item in EseList)
             {
-                Console.WriteLine(item.info() + " " + item.PunktideArv());
+                Console.WriteLine(item.info());
             }
-        }
-
-        public string info()
-        {
-            throw new NotImplementedException();
         }
 
 
         public int CompareTo(Tegelane? other) 
         {
             if (other == null) return 1;
-            return this.eses.Count - other.ItemCount();
+            return this.EseList.Count - other.EsesKogus();
         }
 
-        public int ItemCount() { return eses.Count; }
+        public int EsesKogus() { return this.EseList.Count; }
     }
 }
 
