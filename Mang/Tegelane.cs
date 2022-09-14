@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mang
 {
-    class Tegelane : IUksus, IComparable<Tegelane> // Класс Tegelane реализует интерфейс IUksus 
+    internal class Tegelane : IUksus, IComparable<Tegelane> // Класс Tegelane реализует интерфейс IUksus 
     {
         public string nimi; // частное свойство nimi
         List<Ese> EseList; // список элементов List<Ese>
@@ -25,7 +25,7 @@ namespace Mang
             }
             return psum;
         }
-        public int lisaEse(int item){ return item; } // метод lisaEse который запоминает элемент переданный в качестве элемента
+        public void LisaEse(Ese item){ EseList.Add(item); } // метод lisaEse который запоминает элемент переданный в качестве элемента
 
 
         double summ;
