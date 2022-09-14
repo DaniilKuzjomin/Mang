@@ -28,21 +28,29 @@ namespace Mang
         public int lisaEse(int item){ return item; } // метод lisaEse который запоминает элемент переданный в качестве элемента
 
 
-
-        public string Info(int esemeteArv) // метод Info возвращает информацию о персонаже в виде текста, показывающего имя персонажа, количество предметов и количество очков
+        double summ;
+        public string info() // метод Info возвращает информацию о персонаже в виде текста, показывающего имя персонажа, количество предметов и количество очков
         {
-            string info = $"nimi - {nimi}, esemetr arv - {esemeteArv}, punktide arv - {PunktideArv()}";
-            return info;
+            Console.WriteLine($"Nimi: {nimi}");
+            foreach (string line in File.ReadLines(@"..\..\..\esemed.txt"))
+            {
+                string[] row = line.Split(';');
+                summ += Double.Parse(row[1]);
+                Ese ese = new Ese(row[0], Int32.Parse(row[1]));
+                EseList.Add(ese);
+                Console.WriteLine($"Nimetus: {row[0]}, Punktide arvu: {row[1]}");
+            }
+            Console.WriteLine($"Esemete arvu: {EseList.Count}, Summa: {summ}");
+            return $"{nimi}";
         }
-        
 
-        public string valjastaEsemed() // метод valjastaEsemed где предметы персонажа выводятся на экран так, чтобы каждый предмет находился на отдельной строке.
+        
+        public void väljastaEsemed() // метод valjastaEsemed где предметы персонажа выводятся на экран так, чтобы каждый предмет находился на отдельной строке.
         {
             foreach (Ese item in EseList)
             {
-                Console.WriteLine(item);
+                Console.WriteLine(item.info() + " " + item.PunktideArv());
             }
-            return valjastaEsemed(); 
         }
 
         public string info()
