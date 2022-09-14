@@ -51,10 +51,13 @@ namespace Mang
         }
 
 
-        public int CompareTo(Tegelane? other)
+        public int CompareTo(Tegelane? other) 
         {
-            throw new NotImplementedException();
+            if (other == null) return 1;
+            return this.eses.Count - other.ItemCount();
         }
+
+        public int ItemCount() { return eses.Count; }
     }
 }
 
